@@ -788,3 +788,210 @@ function removeDuplicates(array) {
 }
 
 console.log(removeDuplicates(dupNumArray));
+
+// js_exercises_03 ///
+
+///// Exercise 27 /////
+
+/*Instructions
+Create a function that takes one argument, an array.
+Use this array:
+const array = ["Hello", "Good Day", "Your
+Welcome", "hotdog", "hamburgers"];
+to count over all the letters and return an object with the
+letter as the key and the letter count as the value.
+Expected output:
+{ h: 3, e: 4, l: 3, o: 7, g: 3, d: 3, a: 2, y: 2, u: 2, r: 3, w: 1, c:
+1, m: 2, t: 1, b: 1, s: 1 }
+Note:
+that it shouldn’t be case sensitive
+Extra:
+return the letter with the most occurrences as well*/
+
+const array = ["Hello", "Good Day", "Your Welcome", "hotdog", "hamburgers"];
+
+function setValueOfLetters(arr) {
+
+  const oneString = arr.join("").toLowerCase().replaceAll(" ", "");
+  const valueOfLetters = {};
+  let maxCount = 0;
+  let mostFrequentLetter = "";
+
+  for (const letter of oneString) {
+    valueOfLetters[letter] = (valueOfLetters[letter] || 0) + 1;
+    if (valueOfLetters[letter] > maxCount) {
+      maxCount = valueOfLetters[letter];
+      mostFrequentLetter = letter;}
+  }
+  return {valueOfLetters, mostFrequentLetter};
+}
+
+console.log(setValueOfLetters(array));
+
+///// Exercise 28 /////
+
+/*Instructions
+You are given two arrays:
+const food = ["Noodle", "Pasta", "Ice-cream",
+"Meat", "Cucumber", "Olives"];
+const food1 = ["Fries", "Ice-cream", "Pizza",
+"Olives", "Hamburgers"];
+Create a function that takes these two arrays as
+arguments.
+Compare these two arrays using 2 for loops and return the
+items that are the same. If none are the same return false.*/
+
+const food = ["Noodle", "Pasta", "Ice-cream", "Meat", "Cucumber", "Olives"];
+const food1 = ["Fries", "Ice-cream", "Pizza", "Olives", "Hamburgers"];
+
+function isDuplicateFood(arr, arr1) {
+  const duplicateItems = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr1.length; j++) {
+      if (arr[i] === arr1[j]) {
+        duplicateItems.push(arr[i]);
+        break;
+      }
+    }
+  }
+
+  return duplicateItems.length > 0 ? duplicateItems : false;
+}
+
+console.log(isDuplicateFood(food, food1));
+
+///// Exercise 29 /////
+
+/*Write a function that has one argument, a positive integer.
+Let's call it N.
+The function should console log a step shape.
+With N levels using the # character. Make sure the step has
+spaces on the right-hand side if empty!
+Note:
+Examples:
+steps(2)
+‘# ‘
+‘##’
+steps(3)
+‘# ‘
+‘## ‘
+‘###’
+steps(4)
+‘# ‘
+‘## ‘
+‘### ‘
+‘####’
+Notice that if each step is not populated by a step it should
+consist of empty space. For example, if n = 3:
+steps(3)
+‘# ‘ ←-- 2 empty spaces
+‘## ‘ ←-- 1 empty space
+‘###’
+Ninja:
+You are not allowed to use the repeat method. Use 2 loops
+instead*/
+
+function setShapeLevels(n) {
+  
+  let sharps = "";
+  let spaces = new Array(n+1).join("|");
+  for (let index = 0; index < n; index++) {
+    sharps += "#";
+    spaces = spaces.slice(0, -1);
+    console.log(sharps, spaces);
+  }
+}
+
+setShapeLevels(3);
+
+/// Exercise 30 /////
+
+/*1. Write a function called ‘isString’ that receives 2 arguments,
+a string and a callback function. The function checks that
+the string is indeed a string. If the string is a string, pass
+the string to a callback function that logs that string to the
+console.
+*/
+
+const myInput = "Hello World!";
+function showString(showMe) {
+  console.log(showMe);
+}
+
+function isString(input, callback) {
+  if (typeof input === "string") {
+    callback(input);
+  } else {
+    console.log(`${input} is not a string`);
+  }
+}
+
+isString(myInput, showString);
+
+/*2. Create a function called ‘firstWordUpperCase’ that
+receives 2 arguments, a string and a callback function.
+The function will capitalize the first word in the sentence
+and pass the string to a callback function which will create
+dashes between the words.
+3. Call the ‘firstWordUpperCase’ function with a callback of
+your choice.
+4. Create your own function that will receive from one of its
+arguments a callback function*/
+
+const myInput1 = "Fortune favors the bold";
+
+function createDashes(input) {
+return input.replaceAll(" ", "-");
+}
+
+function firstWordUpperCase(input, callback) {
+  const arr = input.split(" ");
+  arr[0] = arr[0].toUpperCase();
+  inputUpperCase = arr.join(" ");
+  return callback(inputUpperCase);
+}
+
+console.log(firstWordUpperCase(myInput1, createDashes))
+
+
+/// Exercise 31 /////
+
+/*Instructions
+Write the following functions using the reduce built-in function.
+1. max*/
+
+const myNumbers = [2, 8, 55, 9, 15]
+
+function getMaxOfArray(arr) {
+  return Math.max.apply(null, arr);
+}
+
+console.log(getMaxOfArray(myNumbers));
+
+//2. the sum of even numbers
+
+function sumOfEvenNumbers(arr) {
+  return arr.reduce((sum, current) => {
+    if (current % 2 === 0) {
+      return sum + current;
+    }
+    return sum;
+  }, 0);
+}
+
+console.log(sumOfEvenNumbers(myNumbers));
+
+//3. average
+
+function getAverage(arr) {
+  if (arr.length === 0) {
+    return 0;
+  } else {
+    const sum = arr.reduce((sum, current) => sum + current, 0);
+    return sum / arr.length;
+  }
+  
+}
+
+console.log(getAverage(myNumbers));
