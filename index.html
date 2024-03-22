@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Codio Exercises</title>
-</head>
-<body>
+  </head>
+  <body>
+    <ul>
+      <li>title 1</li>
+      <li class="start-here">title 2</li>
+      <li>
+        <ul>
+          <li>sub title 1</li>
+          <li>sub title 2</li>
+          <li>sub title 3</li>
+        </ul>
+      </li>
+      <li>title 3</li>
+    </ul>
+    <div>
+      <p>Hello World!</p>
+    </div>
+    <div class="verification" contenteditable="true">
+      And paste it into this one.
+    </div>
+    <form id="verification-form">
+      <input type="text" class="code-input" maxlength="1" />
+      <input type="text" class="code-input" maxlength="1" />
+      <input type="text" class="code-input" maxlength="1" />
+      <input type="text" class="code-input" maxlength="1" />
+      <button type="submit" style="display: none;" id="submit-btn"></button>
+    </form>
 
-<script src="./app.js"></script>
-</body>
+    <div id="text">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae
+      lectus eget eros tincidunt luctus. Duis efficitur eros vel metus
+      dignissim, vel vestibulum eros luctus. Sed sodales sem vitae suscipit
+      cursus. Proin malesuada volutpat diam, non tincidunt nisl interdum nec.
+    </div>
+    <div id="font-size-buttons">
+      <button id="increase-btn">+</button>
+      <button id="decrease-btn">-</button>
+    </div>
+    <script src="./app.js"></script>
+  </body>
 </html>

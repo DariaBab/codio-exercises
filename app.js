@@ -995,3 +995,467 @@ function getAverage(arr) {
 }
 
 console.log(getAverage(myNumbers));
+
+
+
+// js_exercises_04 ///
+
+///// Exercise 31 /////
+
+/*Instructions
+# Note: We ask you not to solve the bug by finding it with
+your eyes but to use the debugging tools we've learned!
+What is wrong with this code?
+1. First, find the line that contains the problem. Write it down.
+2. Which debug method did you use to find the bug?
+3. Explain the bug in your own words.
+4. Fix the code and submit it all.*/
+
+// I used console.log statements and code execution in a debugger to find the bug.
+
+function getSum(arr1, arr2){
+let sum = 0; // Changed const to let to allow reassignment
+for (let i=0; i < arr1.length; i++){
+sum += arr1[i];
+}
+for (let i=0; i < arr2.length; i++){
+sum += arr2[i];
+}
+return sum // Added return statement to return the calculated sum
+}
+console.log(getSum([1,2,3], [5,66,23])); // Corrected the array syntax
+
+///// Exercise 32 /////
+
+/*Instructions
+# Note: We ask you not to solve the bug by finding it with
+your eyes but to use the debugging tools we've learned!
+What is wrong with this code?
+1. First, find the line that contains the problem. Write it down.
+2. Which debug method did you use to find the bug?
+3. Explain the bug in your own words.
+4. Fix the code and submit it all.*/
+
+// To find the bug, I used console.log statements and code execution in a debugger.
+
+function findSmallest(a, b, c){
+  if (a > b && b > c){ //Modified the condition to use logical AND (&&) operators
+    return c;
+  } else if (a > c && c > b) {
+    return b;
+  } else {
+    return a;
+  }
+}
+console.log(findSmallest(52, 66, 2)); //Corrected the function name
+
+///// Exercise 33 /////
+
+/*
+Instructions
+# Note: We ask you not to solve the bug by finding it with
+your
+eyes but to use the debugging tools we've learned!
+What is wrong with this code?
+1. First, find the line that contains the problem. Write it down.
+2. Which debug method did you use to find the bug?
+3. Explain the bug in your own words.
+4. Fix the code and submit it all.
+we want to sum all numbers in even cells in arrays of size 10:
+[1,2,3,4,5,6,7,8,9,10] => 2+4+6+8+10 = 30*/
+
+//The problematic line is return arr[2] + arr[4] + arr[6] + arr[8] + arr[10];.
+//The bug is caused by attempting to access the array index arr[10], which doesn't exist.
+
+//Here's the fixed code:
+function getSumOfEven(arr) {
+  return arr[1] + arr[3] + arr[5] + arr[7] + arr[9];
+}
+console.log(getSumOfEven([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
+
+//Here's another way to solve the problem:
+function getSumOfEven(arr){
+  return arr.reduce((sum, current) => {
+    if (current % 2 === 0) {
+      return sum + current;
+    }
+    return sum;
+  }, 0);
+}
+console.log(getSumOfEven([1,2,3,4,5,6,7,8,9,10]));
+
+/// Exercise 34 /////
+
+/*Instructions
+# Note: We ask you not to solve the bug by finding it with
+your eyes but to use the debugging tools we've learned!
+What is wrong with this code?
+1. First find the line that contains the problem. Write it down.
+2. Which debug method did you use to find the bug?
+3. Explain the bug in your own words.
+4. Fix the code and submit it all.*/
+
+/*The bug in the code is that the variable sum is not initialized
+with a value before being used in the loop. This leads to an initial
+value of undefined being added to the array elements, resulting in an incorrect sum.*/
+
+//Here's the fixed code:
+
+function calcAverage(arr) {
+let sum = 0 ;
+for ( let i = 0 ; i < arr.length; i++ ){
+sum += arr[i];
+} return sum/arr.length; //Since the function is named calcAverage, I added division of the sum by the length of the array.
+}
+console.log(calcAverage([85, 90, 92]));
+
+/// Exercise 35 /////
+
+/*Instructions
+# Note: We ask you not to solve the bug by finding it with
+your eyes but to use the debugging tools we've learned!
+What is wrong with this code?
+1. First, find the line that contains the problem. Write it down.
+2. Which debug method did you use to find the bug?
+3. Explain the bug in your own words.
+4. Fix the code and submit it all.*/
+
+/*The bug in the code is that the increment operation counter + 1;
+is not updating the value of counter. The correct syntax for
+incrementing counter is counter += 1;*/
+
+function countOccurrences(str, char) {
+let counter = 0;
+for ( let i = 0; i < str.length; i++ ){
+if ( str.charAt(i) === char ){
+counter +=1 ; // Fixed the increment operation
+}}
+ return counter ;
+}
+console.log(countOccurrences ( "ini mini miny moe" , "n" ));
+
+/// Exercise 36 /////
+
+/*Instructions
+Without running the code below, explain in your own words
+what the result of each block of code will be and why.
+If there are any faulty outputs, please write on how we can fix
+them.*/
+
+//Block 1
+//1)console.log(a) prints undefined because "a" is used before the variable has been declared
+//2)console.log(foo()) prints 2 because the function "foo" returns 2, and this function is hoisted to the top of funcA,
+//so it's accessible before its actual declaration in the code.
+function funcA() {
+var a = 1; // move the variable declaration to the top
+console.log(a);
+console.log(foo());
+function foo() {
+return 2;
+}}
+funcA();
+
+//Block 2
+//1) The line console.log(obj.prop.getFullName()) accesses the getFullName method inside the prop object of obj.
+//And the output of this line will be "Aurelio De Rosa".
+//2)The line var test = obj.prop.getFullName assigns the getFullName method to the variable test,
+//but this assignment is without the parentheses, meaning test now holds a reference to the getFullName function but doesn't execute it yet.
+var fullName = 'John Doe';
+var obj = {
+fullName: 'Colin Ihrig',
+prop: {
+fullName: 'Aurelio De Rosa',
+getFullName: function () {
+return this.fullName;
+}
+}
+};
+console.log(obj.prop.getFullName());
+var test = obj.prop.getFullName(); // add parentheses
+console.log(test());
+
+//Block 3
+//1)The output of this line console.log(typeof a); will be "undefined" because varible "a" is declared within the scope of the funcB function and is not accessible outside that scope.
+//2)The output of this line console.log(typeof b); will log "number" because b is declared without the let keyword inside the funcB function, making it a global variable.
+
+let c, g; // Declare variables a and b in the global scope.
+
+function funcB() {
+  c = g = 0;
+  c++;
+  return c;
+}
+
+funcB();
+console.log(typeof c);
+console.log(typeof g);
+
+//Block 4
+//JavaScript allows function redeclaration, but to avoid confusion
+// it would be better to give each function a unique name
+function funcC1() {
+console.log("1");
+}
+funcC1();
+
+function funcC2() {
+console.log("2");
+}
+funcC2();
+
+//Block 5
+/*1) console.log(d) will output "1", because variable "d" is not declared using var,
+let, or const, making it a global variable.
+2) console.log(e) will output "undefined", because variable "e" is declared using var
+which makes it a local variable scoped to the funcD2 function*/
+
+let d, e; // Declare variables d and e in the global scope.
+
+function funcD1() {
+d = 1;
+}
+funcD1();
+console.log(d);
+
+function funcD2() {
+e = 1;
+}
+funcD2();
+console.log(e);
+
+//Block 6
+//1)The output of this line console.log("Value of f in local scope: ", f);
+// inside the funcE function will be "1", because the variable "f" was
+//declared before calling the funcE function.
+//2) The second output of this line console.log("Value of f in local scope: ", f);
+//will be "undefined" because the variable "f" is not declared at this stage yet.
+
+var f = 1;  // move the variable declaration to the top
+function funcE() {
+console.log("Value of f in local scope: ", f);
+}
+console.log("Value of f in global scope: ", f);
+funcE();
+
+///// Exercise 37 /////
+
+/*Instructions
+Please make the following changes to the HTML file while
+navigating the DOM.
+Create a variable that holds the <li> element with the class
+“start-here”. Use traverse methods to complete these tasks:*/
+
+const startHere = document.querySelector(".start-here");
+
+//1. Change the text from “title 2” to “main title”
+startHere.textContent = "main title";
+
+//2. Add another subtitle with the text “subtitle 4”
+const ulSubtitles = document.querySelector("ul ul");
+const newLiElement = document.createElement("li");
+ulSubtitles.appendChild(newLiElement);
+newLiElement.textContent = "subtitle 4";
+
+//3. Delete the last <li> element from the list.
+const ulElement = document.querySelector("ul");
+const lastLiElement = ulElement.lastElementChild;
+ulElement.removeChild(lastLiElement);
+
+//4. Change the <title> element text to “Master Of The Dom”.
+document.addEventListener("DOMContentLoaded", function () {
+  document.title = "Master Of The Dom";
+});
+
+//5. Change the text of the <p> element ot something else of your
+const pElement = document.querySelector("p");
+pElement.textContent = "I changed the text";
+
+///// Exercise 38 /////
+
+/*
+JavaScript – forEachDOM
+The following exercise contains the following subjects:
+● DOM
+● foreach
+Instructions
+You get an array of objects of users from your database:*/
+const users = [
+  {
+    id: 167464,
+    firstName: "Jimmy",
+    lastName: "Arnold",
+    email: "jimmya@gmail.com",
+  },
+  {
+    id: 578447,
+    firstName: "Martha",
+    lastName: "Goldman",
+    email: "gold@hotmail.com",
+  },
+  {
+    id: 864578,
+    firstName: "Tim",
+    lastName: "Burton",
+    email: "timmy.hotmail.com",
+  },
+];
+/*1. Loop over the array with the forEach method and
+dynamically create an ordered list of the first and last
+names of the objects.*/
+/*3. Create a custom data attribute called “data-id” and attach
+the id value to each li.
+Your markup should look like this:*/
+let listOfNames = document.createElement('ol');
+document.body.appendChild(listOfNames);
+users.forEach((el) => {
+ let liNameElement = document.createElement('li');
+ liNameElement.textContent = `${el.firstName} ${el.lastName}`;
+ liNameElement.setAttribute('id', el.id)
+ listOfNames.appendChild(liNameElement);
+
+ });
+
+/*2. Remove the bullet points of the ordered list with
+JavaScript.*/
+listOfNames.style.listStyleType = "none";
+
+/// Exercise 39 /////
+/*Instructions
+Many times an application needs to verify the account by
+sending a verification code by text message.
+Let's create functionality that enables the user to paste the
+verification code to the input fields.
+Features:
+1. The user is allowed to type the values manually. After
+each value is inserted, the next input will be focused.
+2. The user is allowed to paste the verification code.
+3. An extra challenge will be to auto submit the form once all
+inputs all populated.
+Things to think about:
+What happens if the user pastes only 3 digits and there are
+6 inputs to fill out.
+Here is an example.
+Things to help you:
+Google “paste event” to understand how to listen to a
+paste event.
+Google “clipboardData” to find out how to get the value of
+a paste event.*/
+
+document.addEventListener('DOMContentLoaded', function() {
+    const verificationForm = document.getElementById('verification-form');
+    const codeInputs = verificationForm.querySelectorAll('input');
+    const submitButton = document.getElementById('submit-btn');
+
+    function focusNextInput(currentInput) {
+      const nextInputIndex = Array.from(codeInputs).indexOf(currentInput) + 1;
+      if (nextInputIndex < codeInputs.length) {
+        codeInputs[nextInputIndex].focus();
+      } else {
+        submitButton.click();
+      }
+    }
+
+    codeInputs.forEach(function(input, index) {
+      input.addEventListener('input', function() {
+        if (this.value.length === 1) {
+          focusNextInput(this);
+        }
+      });
+    });
+
+    verificationForm.addEventListener('paste', async function(event) {
+        event.preventDefault();
+        try {
+          const clipboardData = await navigator.clipboard.readText();
+          const pasteData = clipboardData.trim();
+          for (let i = 0; i < pasteData.length && i < codeInputs.length; i++) {
+            codeInputs[i].value = pasteData.charAt(i);
+            if (i === codeInputs.length - 1) {
+              submitButton.click();
+            }
+          }
+        } catch (error) {
+          console.error('Failed to read clipboard data: ', error);
+        }
+      });
+  });
+
+/// Exercise 40 /////
+/*Instructions
+Create a webpage that has some text and two buttons with ‘+’
+and ‘-‘ Clicking the ‘+’ button should increase the text’s font-size
+and clicking the ‘-‘ should decrease it.
+Limit the font size to be between 6px and 100px.*/
+
+document.addEventListener('DOMContentLoaded', function() {
+    const textElement = document.getElementById('text');
+    const increaseButton = document.getElementById('increase-btn');
+    const decreaseButton = document.getElementById('decrease-btn');
+
+    const FONT_SIZE_INCREMENT = 2;
+    const MAX_FONT_SIZE = 100;
+    const MIN_FONT_SIZE = 6;
+
+    const changeFontSize = (delta) => {
+      let currentFontSize = parseFloat(window.getComputedStyle(textElement).fontSize);
+      currentFontSize += delta;
+      if (currentFontSize >= MIN_FONT_SIZE && currentFontSize <= MAX_FONT_SIZE) {
+        textElement.style.fontSize = currentFontSize + 'px';
+      }
+    };
+
+    increaseButton.addEventListener('click', () => {
+      changeFontSize(FONT_SIZE_INCREMENT);
+    });
+
+    decreaseButton.addEventListener('click', () => {
+      changeFontSize(-FONT_SIZE_INCREMENT);
+    });
+  });
+
+
+
+/// Exercise 41 /////
+
+/*closures
+Instructions
+Without running the code below, explain in your own
+words what the result of each block of code will be and
+why.*/
+
+//Block 1
+var b = 1;
+function someFunction(number) {
+function otherFunction(input) {
+return b; // Return the value of variable "b" = 5
+}
+b = 5; // Update the value of variable "b" to 5
+return otherFunction; // Return the nested function otherFunction
+}
+var firstResult = someFunction(9); // Call someFunction and assign the returned function to firstResult (=5)
+var result = firstResult(2); // Call the function stored in firstResult and assign the result to "result". reault = 5
+
+
+//Block 2
+var a = 1;
+function b2() {
+a = 10; // Update the value of variable "a" to 10, but this change is local to the function scope and doesn't affect the global variable "a"
+return; // Return undefined.
+function a() { }//Function a, defined after the return statement, will not be invoked during the execution of the function b2.
+}
+b2();
+console.log(a); // will log 1
+
+
+//Block 3
+/*Because setTimeout operates asynchronously the log functions are executed after the loop, "i" will be "3" for each function call. 
+Consequently, the console will display "3" three times, showing that "i" is "3" at the time of execution.*/
+let i;
+for (i = 0; i < 3; i++) {
+const log = () => {
+console.log(i);
+}
+setTimeout(log, 100);
+}
+
+
